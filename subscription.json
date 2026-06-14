@@ -43,10 +43,6 @@
     "meta": null,
     "outbounds": [
         {
-            "mux": {
-                "concurrency": -1,
-                "enabled": false
-            },
             "protocol": "vless",
             "settings": {
                 "vnext": [
@@ -71,7 +67,7 @@
                     "fingerprint": "firefox",
                     "publicKey": "L3X1eh1Jq_6PKJ6LlwjgiWq0XNaDOqCVKgIElJ5nkVA",
                     "serverName": "storage.yandex.net",
-                    "shortId": "0d960275b7b0f9af",
+                    "shortId": "e0ef3d5c0aacb615",
                     "show": false
                 },
                 "security": "reality",
