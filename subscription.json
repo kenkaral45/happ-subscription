@@ -292,7 +292,8 @@
   "domain:ipinfo.io",
   "domain:browserleaks.com",
   "domain:ipleak.net",
-  "domain:2ip.ru"
+  "domain:2ip.ru",
+  "domain:youtube.com"
 ],
                 "outboundTag": "direct",
                 "type": "field"
