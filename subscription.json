@@ -1,305 +1,250 @@
 [
   {
     "dns": {
-        "queryStrategy": "UseIP",
-        "servers": [
-            "https://8.8.8.8/dns-query",
-            "https://8.8.4.4/dns-query"
-        ]
+      "servers": [
+        "https://8.8.8.8/dns-query",
+        "https://8.8.4.4/dns-query"
+      ],
+      "queryStrategy": "UseIP"
     },
     "inbounds": [
-        {
-            "listen": "127.0.0.1",
-            "port": 10808,
-            "protocol": "socks",
-            "settings": {
-                "auth": "noauth",
-                "udp": true,
-                "userLevel": 8
-            },
-            "sniffing": {
-                "destOverride": [
-                    "http",
-                    "tls"
-                ],
-                "enabled": true,
-                "routeOnly": false
-            },
-            "tag": "socks"
+      {
+        "listen": "127.0.0.1",
+        "port": 10808,
+        "protocol": "socks",
+        "settings": {
+          "auth": "noauth",
+          "udp": true,
+          "userLevel": 8
         },
-        {
-            "listen": "127.0.0.1",
-            "port": 10809,
-            "protocol": "http",
-            "settings": {
-                "userLevel": 8
-            },
-            "tag": "http"
-        }
+        "sniffing": {
+          "destOverride": ["http", "tls"],
+          "enabled": true,
+          "routeOnly": false
+        },
+        "tag": "socks"
+      },
+      {
+        "listen": "127.0.0.1",
+        "port": 10809,
+        "protocol": "http",
+        "settings": {
+          "userLevel": 8
+        },
+        "tag": "http"
+      }
     ],
-    "log": {
-        "loglevel": "info"
-    },
-    "meta": null,
+    "log": { "loglevel": "info" },
     "outbounds": [
-        {
-            "mux": {
-                "concurrency": -1,
-                "enabled": false
-            },
-            "protocol": "vless",
-            "settings": {
-                "vnext": [
-                    {
-                        "address": "lt-cherry-01.com",
-                        "port": 8443,
-                        "users": [
-                            {
-                                "encryption": "none",
-                                "flow": "xtls-rprx-vision",
-                                "id": "c074eb7d-64d0-4405-946e-89349ab90dc6",
-                                "level": 8
-                            }
-                        ]
-                    }
-                ]
-            },
-            "streamSettings": {
-                "network": "tcp",
-                "realitySettings": {
-                    "allowInsecure": false,
-                    "fingerprint": "firefox",
-                    "publicKey": "L3X1eh1Jq_6PKJ6LlwjgiWq0XNaDOqCVKgIElJ5nkVA",
-                    "serverName": "storage.yandex.net",
-                    "shortId": "0d960275b7b0f9af",
-                    "show": false
-                },
-                "security": "reality",
-                "tcpSettings": {
-                    "header": {
-                        "type": "none"
-                    }
+      {
+        "mux": { "concurrency": -1, "enabled": false },
+        "protocol": "vless",
+        "settings": {
+          "vnext": [
+            {
+              "address": "lt-cherry-01.com",
+              "port": 8443,
+              "users": [
+                {
+                  "encryption": "none",
+                  "flow": "xtls-rprx-vision",
+                  "id": "c074eb7d-64d0-4405-946e-89349ab90dc6",
+                  "level": 8
                 }
-            },
-            "tag": "proxy"
+              ]
+            }
+          ]
         },
-        {
-            "protocol": "freedom",
-            "settings": {
-                "domainStrategy": "UseIP"
-            },
-            "tag": "direct"
+        "streamSettings": {
+          "network": "tcp",
+          "security": "reality",
+          "realitySettings": {
+            "allowInsecure": false,
+            "fingerprint": "firefox",
+            "publicKey": "L3X1eh1Jq_6PKJ6LlwjgiWq0XNaDOqCVKgIElJ5nkVA",
+            "serverName": "storage.yandex.net",
+            "shortId": "2cfb5a0ae8ab0cb0",
+            "show": false
+          },
+          "tcpSettings": { "header": { "type": "none" } }
         },
-        {
-            "protocol": "blackhole",
-            "settings": {
-                "response": {
-                    "type": "http"
-                }
-            },
-            "tag": "block"
-        }
+        "tag": "proxy"
+      },
+      {
+        "protocol": "freedom",
+        "settings": { "domainStrategy": "UseIP" },
+        "tag": "direct"
+      },
+      {
+        "protocol": "blackhole",
+        "settings": { "response": { "type": "http" } },
+        "tag": "block"
+      }
     ],
     "remarks": "🇱🇹⚡Литва",
     "routing": {
-        "domainMatcher": "hybrid",
-        "domainStrategy": "IPIfNonMatch",
-        "rules": [
-            {
-                "outboundTag": "direct",
-                "protocol": [
-                    "bittorrent"
-                ],
-                "type": "field"
-            },
-            {
-                "domain": [
-  "domain:ru",
-  "domain:xn--p1ai",
-  "geosite:category-ru",
-  "geosite:private",
-
-  "regexp:.*\\.ru$",
-  "regexp:.*\\.su$",
-  "regexp:.*\\.by$",
-  "regexp:.*\\.xn--p1ai$",
-  "regexp:^(.+\\.)?mail\\.ru$",
-  "regexp:^(.+\\.)?yandex\\.(aero|az|by|cloud|co\\.il|com(\\.am|\\.ge|\\.ru|\\.tr|\\.ua)?|de|ee|eu|fi|fr|jobs|kg|kz|lt|lv|md|net|org|pl|ru|st|sx|tj|tm|tr|ua|uz)$",
-  "regexp:^(.+\\.)?vk\\.(com|ru)$",
-  "regexp:^(.+\\.)?ok(cdn)?\\.ru$",
-  "regexp:^(.+\\.)?2gis\\.(ae|am|az|by|com(\\.cy)?|cz|ge|kg|kz|ru|tj|ua|uz)$",
-  "regexp:^(.+\\.)?vtb\\.ru$",
-  "regexp:^(.+\\.)?rzd\\.ru$",
-  "regexp:^(.+\\.)?gosuslugi\\.ru$",
-  "regexp:^(.+\\.)?ozon(e)?\\.ru$",
-  "regexp:^(.+\\.)?wb\\.ru$",
-  "regexp:^(.+\\.)?wildberries\\.ru$",
-  "regexp:^(.+\\.)?kinopoisk\\.ru$",
-  "regexp:^(.+\\.)?alfa.*\\.ru$",
-  "regexp:^(.+\\.)?t(2|ele2)\\.ru$",
-  "regexp:^(.+\\.)?lemanapro\\.ru$",
-  "regexp:^(.+\\.)?rutube\\.ru$",
-  "regexp:^(.+\\.)?mts.*\\.ru$",
-  "regexp:^(.+\\.)?dzen.*\\.ru$",
-  "regexp:^(.+\\.)?x5.*\\.ru$",
-  "regexp:^(.+\\.)?beeline\\.ru$",
-  "regexp:^(.+\\.)?megafon\\.ru$",
-  "regexp:^alfa(-?[a-z]+)?\\.(ru|com|biz|st)$",
-  "regexp:^api\\.(a\\.mts|avito|expf|max|mindbox)\\.ru$",
-  "regexp:^vtb(-?[a-z0-9]+)?\\.(ru|com|in|digital|site|bank\\.in|fut\\.ru|corp\\.ru|promo)$",
-  "regexp:^[0-9]+\\.mc\\.yandex\\.ru$",
-  "regexp:^[0-9]{2}\\.img\\.avito\\.st$",
-  "regexp:^sun[0-9]+(-[0-9]+)?\\.userapi\\.com$",
-  "regexp:^sso-app[0-9]+\\.vtb\\.ru$",
-
-  "domain:1cfresh.com",
-  "domain:2gis.by",
-  "domain:2gis.com",
-  "domain:2gis.com.cy",
-  "domain:2gis.ru",
-  "domain:alfa-bank.com",
-  "domain:alfabank.com",
-  "domain:alfabank.ru",
-  "domain:alfa-bank.ru",
-  "domain:alfafinance.biz",
-  "domain:alfafx.com",
-  "domain:alfaprivate.com",
-  "domain:beta-bank.com",
-  "domain:gazprombank.tech",
-  "domain:investalfabank.com",
-  "domain:moex.com",
-  "domain:tbank-online.com",
-  "domain:tbank.ru",
-  "domain:tinkoff.ru",
-  "domain:tochka.com",
-  "domain:tochka-tech.com",
-  "domain:t-tech.team",
-  "domain:vtb.com",
-  "domain:vtb.digital",
-  "domain:vtb.promo",
-  "domain:vtb24.com",
-  "domain:vtbrussia.com",
-  "domain:vtb.ru",
-  "domain:sberbank.ru",
-  "domain:sber.ru",
-  "domain:sberbank.com",
-  "domain:sberbank-tele.com",
-  "domain:sberzvuk.com",
-
-  "domain:mironline.ru",
-  "domain:mirpay.ru",
-  "domain:gosuslugi.ru",
-  "domain:esia.gosuslugi.ru",
-  "domain:pos.gosuslugi.ru",
-  "domain:dom.gosuslugi.ru",
-  "domain:gisee.ru",
-  "domain:government.ru",
-  "domain:kremlin.ru",
-  "domain:vybory.gov.ru",
-  "domain:digital.gov.ru",
-  "domain:gkh.gov.ru",
-
-  "domain:mts.ru",
-  "domain:lk.mts.ru",
-  "domain:premium.mts.ru",
-  "domain:kion.ru",
-  "domain:music.kion.ru",
-  "domain:stroki.mts.ru",
-  "domain:mts-link.ru",
-  "domain:beeline.ru",
-  "domain:megafon.ru",
-
-  "domain:vk.com",
-  "domain:vk.ru",
-  "domain:vk.me",
-  "domain:vk.cc",
-  "domain:vk-cdn.net",
-  "domain:vkuser.net",
-  "domain:vkuseraudio.net",
-  "domain:vkuservideo.net",
-  "domain:userapi.com",
-  "domain:vk-apps.com",
-  "domain:vk.video",
-  "domain:vk.music",
-  "domain:ok.ru",
-  "domain:ok.me",
-  "domain:my.com",
-  "domain:mycdn.me",
-  "domain:max.ru",
-  "domain:tamtam.chat",
-
-  "domain:yandex.ru",
-  "domain:ya.ru",
-  "domain:yandex.com",
-  "domain:yandex.net",
-  "domain:yandex.org",
-  "domain:yandex.cloud",
-  "domain:yastatic.net",
-  "domain:yastat.net",
-  "domain:yandexmetrica.com",
-
-  "domain:mail.ru",
-  "domain:vmailru.net",
-  "domain:smailru.net",
-
-  "domain:ozon.ru",
-  "domain:ozon.st",
-  "domain:ozonusercontent.com",
-  "domain:wildberries.ru",
-  "domain:wildberries.by",
-  "domain:wbstatic.net",
-  "domain:paywb.com",
-  "domain:avito.ru",
-  "domain:avito.st",
-  "domain:youla.io",
-
-  "domain:lenta.ru",
-  "domain:lenta.com",
-  "domain:magnit.ru",
-  "domain:vkusvill.ru",
-  "domain:dixy.ru",
-  "domain:perekrestok.ru",
-  "domain:5ka.ru",
-  "domain:chizhik.club",
-
-  "domain:rutube.ru",
-  "domain:okko.tv",
-  "domain:premier.one",
-  "domain:more.tv",
-  "domain:dzen.ru",
-  "domain:kinopoisk.ru",
-
-  "domain:rzd.ru",
-  "domain:faceit.com",
-  "domain:api.faceit.com",
-  "domain:cdn.faceit.com",
-  "domain:cybershoke.net",
-  "domain:steampowered.com",
-  "domain:steamcommunity.com",
-  "domain:steamstatic.com",
-  "domain:steamcontent.com",
-  "domain:playerok.com",
-
-  "domain:varwin.com",
-  "domain:docs.varwin.com",
-  "domain:stepik.org",
-  "domain:lms.yandex.ru",
-  "domain:algoritmika.org",
-  "domain:umschool.net",
-
-  "domain:whatismyipaddress.com",
-  "domain:ifconfig.me",
-  "domain:ipinfo.io",
-  "domain:browserleaks.com",
-  "domain:ipleak.net",
-  "domain:2ip.ru",
-  "domain:youtube.com"
-],
-                "outboundTag": "direct",
-                "type": "field"
-            }
-        ]
+      "domainStrategy": "IPIfNonMatch",
+      "domainMatcher": "hybrid",
+      "rules": [
+        {
+          "type": "field",
+          "protocol": ["bittorrent"],
+          "outboundTag": "direct"
+        },
+        {
+          "type": "field",
+          "outboundTag": "direct",
+          "domain": [
+            "domain:ru", "domain:xn--p1ai", "geosite:category-ru",
+            "domain:1cfresh.com", "domain:2gis.by", "domain:2gis.com",
+            "domain:2gis.com.cy", "domain:alfa-bank.com", "domain:alfabank.com",
+            "domain:alfafinance.biz", "domain:alfafx.com", "domain:alfaprivate.com",
+            "domain:beta-bank.com", "domain:gazprombank.tech", "domain:investalfabank.com",
+            "domain:moex.com", "domain:tbank-online.com", "domain:tochka.com",
+            "domain:tochka-tech.com", "domain:vtb.com", "domain:vtb.digital",
+            "domain:vtb.promo", "domain:vtb24.com", "domain:vtbrussia.com",
+            "domain:avito.st", "domain:lenta.com", "domain:megamarket.tech",
+            "domain:okko.tv", "domain:ozonusercontent.com", "domain:premier.one",
+            "domain:wildberries.by", "domain:wbstatic.net", "domain:youla.io",
+            "domain:userapi.com", "domain:vk.com", "domain:vk-portal.net",
+            "domain:yads.tech", "domain:yandex", "domain:yandex-bank.net",
+            "domain:yandex.aero", "domain:yandex.az", "domain:yandex.by",
+            "domain:yandex.cloud", "domain:yandex.co.il", "domain:yandex.com",
+            "domain:yandex.com.ge", "domain:yandex.eu", "domain:yandex.fr",
+            "domain:yandex.jobs", "domain:yandex.kg", "domain:yandex.kz",
+            "domain:yandex.net", "domain:yandex.org", "domain:yandexadexchange.net",
+            "domain:yandexcloud.net", "domain:yandexcom.net", "domain:yandexmetrica.com",
+            "domain:yandexwebcache.net", "domain:yandexwebcache.org",
+            "domain:yastat.net", "domain:yastatic.net", "domain:gismeteo.com",
+            "domain:lmru.tech", "domain:mradx.net", "domain:tildaapi.com",
+            "domain:kontur.host"
+          ]
+        }
+      ]
     }
-}
-
+  },
+  {
+    "dns": {
+      "servers": [
+        "https://8.8.8.8/dns-query",
+        "https://8.8.4.4/dns-query"
+      ],
+      "queryStrategy": "UseIP"
+    },
+    "inbounds": [
+      {
+        "listen": "127.0.0.1",
+        "port": 10808,
+        "protocol": "socks",
+        "settings": {
+          "auth": "noauth",
+          "udp": true,
+          "userLevel": 8
+        },
+        "sniffing": {
+          "destOverride": ["http", "tls"],
+          "enabled": true,
+          "routeOnly": false
+        },
+        "tag": "socks"
+      },
+      {
+        "listen": "127.0.0.1",
+        "port": 10809,
+        "protocol": "http",
+        "settings": {
+          "userLevel": 8
+        },
+        "tag": "http"
+      }
+    ],
+    "log": { "loglevel": "info" },
+    "outbounds": [
+      {
+        "mux": { "concurrency": -1, "enabled": false },
+        "protocol": "vless",
+        "settings": {
+          "vnext": [
+            {
+              "address": "nl01-cherry.online",
+              "port": 8443,
+              "users": [
+                {
+                  "encryption": "none",
+                  "flow": "xtls-rprx-vision",
+                  "id": "04144839-c22b-422b-a885-ea729e287137",
+                  "level": 8
+                }
+              ]
+            }
+          ]
+        },
+        "streamSettings": {
+          "network": "tcp",
+          "security": "reality",
+          "realitySettings": {
+            "allowInsecure": false,
+            "fingerprint": "firefox",
+            "publicKey": "LT_0j3zQkaqgtJHvyaG24xz0IfmXUswVCTeC75Qsgjo",
+            "serverName": "storage.yandex.net",
+            "shortId": "6f15101ff2cc4887",
+            "show": false
+          },
+          "tcpSettings": { "header": { "type": "none" } }
+        },
+        "tag": "proxy"
+      },
+      {
+        "protocol": "freedom",
+        "settings": { "domainStrategy": "UseIP" },
+        "tag": "direct"
+      },
+      {
+        "protocol": "blackhole",
+        "settings": { "response": { "type": "http" } },
+        "tag": "block"
+      }
+    ],
+    "remarks": "🇳🇱⚡Нидерланды",
+    "routing": {
+      "domainStrategy": "IPIfNonMatch",
+      "domainMatcher": "hybrid",
+      "rules": [
+        {
+          "type": "field",
+          "protocol": ["bittorrent"],
+          "outboundTag": "direct"
+        },
+        {
+          "type": "field",
+          "outboundTag": "direct",
+          "domain": [
+            "domain:ru", "domain:xn--p1ai", "geosite:category-ru",
+            "domain:1cfresh.com", "domain:2gis.by", "domain:2gis.com",
+            "domain:2gis.com.cy", "domain:alfa-bank.com", "domain:alfabank.com",
+            "domain:alfafinance.biz", "domain:alfafx.com", "domain:alfaprivate.com",
+            "domain:beta-bank.com", "domain:gazprombank.tech", "domain:investalfabank.com",
+            "domain:moex.com", "domain:tbank-online.com", "domain:tochka.com",
+            "domain:tochka-tech.com", "domain:vtb.com", "domain:vtb.digital",
+            "domain:vtb.promo", "domain:vtb24.com", "domain:vtbrussia.com",
+            "domain:avito.st", "domain:lenta.com", "domain:megamarket.tech",
+            "domain:okko.tv", "domain:ozonusercontent.com", "domain:premier.one",
+            "domain:wildberries.by", "domain:wbstatic.net", "domain:youla.io",
+            "domain:userapi.com", "domain:vk.com", "domain:vk-portal.net",
+            "domain:yads.tech", "domain:yandex", "domain:yandex-bank.net",
+            "domain:yandex.aero", "domain:yandex.az", "domain:yandex.by",
+            "domain:yandex.cloud", "domain:yandex.co.il", "domain:yandex.com",
+            "domain:yandex.com.ge", "domain:yandex.eu", "domain:yandex.fr",
+            "domain:yandex.jobs", "domain:yandex.kg", "domain:yandex.kz",
+            "domain:yandex.net", "domain:yandex.org", "domain:yandexadexchange.net",
+            "domain:yandexcloud.net", "domain:yandexcom.net", "domain:yandexmetrica.com",
+            "domain:yandexwebcache.net", "domain:yandexwebcache.org",
+            "domain:yastat.net", "domain:yastatic.net", "domain:gismeteo.com",
+            "domain:lmru.tech", "domain:mradx.net", "domain:tildaapi.com",
+            "domain:kontur.host"
+          ]
+        }
+      ]
+    }
+  }
 ]
