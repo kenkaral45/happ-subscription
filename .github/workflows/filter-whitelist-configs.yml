@@ -1,0 +1,92 @@
+name: Filter whitelist configs
+
+on:
+  push:
+    paths:
+      - '.github/workflows/filter-whitelist-configs.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Keep selected configs and sync direct list
+        shell: python
+        run: |
+          import copy
+          import json
+          import re
+          from pathlib import Path
+
+          path = Path('whitelist_configs_combined.json')
+          configs = json.loads(path.read_text(encoding='utf-8'))
+
+          def is_selected(cfg):
+              name = str(cfg.get('remarks', ''))
+              low = name.lower()
+              return (
+                  'лучший сервер' in low
+                  or 'обходы белых списков' in low
+                  or re.search(r'\(бс-\d+\)', low)
+              )
+
+          selected = [cfg for cfg in configs if is_selected(cfg)]
+          if len(selected) != 7:
+              raise SystemExit(f'Expected 7 selected configs, found {len(selected)}')
+
+          direct_domains = None
+          for cfg in configs:
+              for rule in cfg.get('routing', {}).get('rules', []):
+                  if rule.get('outboundTag') == 'direct' and isinstance(rule.get('domain'), list) and rule['domain']:
+                      direct_domains = copy.deepcopy(rule['domain'])
+                      break
+              if direct_domains:
+                  break
+
+          if not direct_domains:
+              raise SystemExit('Direct domain list was not found')
+
+          working = 0
+          for cfg in selected:
+              name = str(cfg.get('remarks', ''))
+              if 'обходы белых списков' in name.lower():
+                  continue
+
+              rules = cfg.setdefault('routing', {}).setdefault('rules', [])
+              direct_rule = next((
+                  rule for rule in rules
+                  if rule.get('outboundTag') == 'direct' and isinstance(rule.get('domain'), list)
+              ), None)
+
+              if direct_rule is None:
+                  insert_at = 1 if rules and rules[0].get('outboundTag') == 'block' else 0
+                  direct_rule = {
+                      'type': 'field',
+                      'domain': copy.deepcopy(direct_domains),
+                      'outboundTag': 'direct',
+                  }
+                  rules.insert(insert_at, direct_rule)
+              else:
+                  direct_rule['domain'] = copy.deepcopy(direct_domains)
+                  direct_rule['type'] = 'field'
+                  direct_rule['outboundTag'] = 'direct'
+
+              working += 1
+
+          if working != 6:
+              raise SystemExit(f'Expected 6 working configs, found {working}')
+
+          path.write_text(json.dumps(selected, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+
+      - name: Commit updated subscription
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add whitelist_configs_combined.json
+          git diff --cached --quiet && exit 0
+          git commit -m "Keep best and whitelist configs with synced direct list [skip ci]"
+          git push
