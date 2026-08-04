@@ -1,0 +1,181 @@
+import copy
+import json
+import os
+import sys
+import time
+import urllib.request
+from pathlib import Path
+
+
+SUBSCRIPTION_URL = "https://connliberty.com/connection/subs/d950be8a-ab95-4618-bf67-21b76c969342?r=1"
+CATALOG_PATH = Path("whitelist_configs_combined.json")
+CONFIG_KEYS = {"remarks", "outbounds", "routing"}
+CANONICAL_DIRECT_OUTBOUND = {
+    "protocol": "freedom",
+    "settings": {"domainStrategy": "UseIP"},
+    "tag": "direct",
+}
+
+
+def load_json(path):
+    return json.loads(path.read_text(encoding="utf-8-sig"))
+
+
+def fetch_subscription_text():
+    source_file = os.environ.get("SUBSCRIPTION_SOURCE_FILE")
+    if source_file:
+        return Path(source_file).read_text(encoding="utf-8-sig", errors="replace")
+
+    request = urllib.request.Request(
+        SUBSCRIPTION_URL,
+        headers={
+            "User-Agent": (
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) "
+                "Chrome/127.0.0.0 Safari/537.36"
+            ),
+            "Accept": "application/json,text/plain,*/*",
+            "Cache-Control": "no-cache",
+            "Pragma": "no-cache",
+        },
+    )
+    last_error = None
+    for attempt in range(1, 4):
+        try:
+            with urllib.request.urlopen(request, timeout=60) as response:
+                return response.read().decode("utf-8-sig")
+        except Exception as exc:
+            last_error = exc
+            if attempt < 3:
+                time.sleep(5 * attempt)
+
+    raise RuntimeError(f"Could not fetch subscription after retries: {last_error}") from last_error
+
+
+def looks_like_config(value):
+    return isinstance(value, dict) and CONFIG_KEYS <= set(value.keys())
+
+
+def extract_configs(raw_text):
+    try:
+        value = json.loads(raw_text)
+    except json.JSONDecodeError:
+        value = None
+
+    if isinstance(value, list) and all(looks_like_config(item) for item in value):
+        return value
+
+    decoder = json.JSONDecoder()
+    configs = []
+    for index, char in enumerate(raw_text):
+        if char != "{":
+            continue
+        try:
+            value, _ = decoder.raw_decode(raw_text[index:])
+        except json.JSONDecodeError:
+            continue
+        if looks_like_config(value):
+            configs.append(value)
+
+    if not configs:
+        raise RuntimeError("Could not extract subscription configs from source response")
+
+    remarks_markers = raw_text.count('"remarks"')
+    if remarks_markers and len(configs) != remarks_markers:
+        raise RuntimeError(
+            f"Extracted {len(configs)} configs, but source contains {remarks_markers} remarks markers"
+        )
+
+    return configs
+
+
+def current_direct_domains(configs):
+    for config in configs:
+        for rule in config.get("routing", {}).get("rules", []):
+            if rule.get("outboundTag") == "direct" and isinstance(rule.get("domain"), list):
+                return list(rule["domain"])
+    raise RuntimeError("Could not find the approved direct domain list in the current catalog")
+
+
+def normalize_direct(config, direct_domains):
+    outbounds = [
+        outbound for outbound in config.get("outbounds", []) if outbound.get("tag") != "direct"
+    ]
+    outbounds.append(copy.deepcopy(CANONICAL_DIRECT_OUTBOUND))
+    config["outbounds"] = outbounds
+
+    routing = config.setdefault("routing", {})
+    rules = routing.setdefault("rules", [])
+
+    domain_rule = None
+    for rule in rules:
+        if rule.get("outboundTag") == "direct" and "domain" in rule:
+            domain_rule = rule
+            break
+
+    if domain_rule is None:
+        domain_rule = {"type": "field", "outboundTag": "direct", "domain": []}
+        rules.insert(0, domain_rule)
+
+    domain_rule.clear()
+    domain_rule.update(
+        {"type": "field", "outboundTag": "direct", "domain": list(direct_domains)}
+    )
+
+    if not any(rule.get("outboundTag") == "direct" and "protocol" in rule for rule in rules):
+        rules.append({"type": "field", "protocol": ["bittorrent"], "outboundTag": "direct"})
+
+
+def validate(configs, source_count, direct_domains):
+    if len(configs) != source_count:
+        raise RuntimeError(f"Final config count {len(configs)} != source count {source_count}")
+
+    for config in configs:
+        remarks = config.get("remarks", "<no remarks>")
+        direct_outbounds = [
+            outbound for outbound in config.get("outbounds", []) if outbound.get("tag") == "direct"
+        ]
+        if direct_outbounds != [CANONICAL_DIRECT_OUTBOUND]:
+            raise RuntimeError(f"{remarks}: direct outbound is not canonical or is duplicated")
+
+        domain_rules = [
+            rule
+            for rule in config.get("routing", {}).get("rules", [])
+            if rule.get("outboundTag") == "direct" and "domain" in rule
+        ]
+        if not domain_rules or any(rule.get("domain") != direct_domains for rule in domain_rules):
+            raise RuntimeError(f"{remarks}: direct domain rule does not match approved list")
+
+        if not any(
+            str(outbound.get("tag", "")).startswith("proxy") or outbound.get("tag") == "proxy"
+            for outbound in config.get("outbounds", [])
+        ):
+            raise RuntimeError(f"{remarks}: proxy outbound is missing")
+
+
+def main():
+    current_configs = load_json(CATALOG_PATH)
+    direct_domains = current_direct_domains(current_configs)
+
+    source_configs = extract_configs(fetch_subscription_text())
+    final_configs = [copy.deepcopy(config) for config in source_configs]
+    for config in final_configs:
+        normalize_direct(config, direct_domains)
+
+    validate(final_configs, len(source_configs), direct_domains)
+    CATALOG_PATH.write_text(
+        json.dumps(final_configs, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+
+    print(f"source_configs={len(source_configs)}")
+    print(f"final_configs={len(final_configs)}")
+    print(f"direct_domains={len(direct_domains)}")
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except Exception as exc:
+        print(f"refresh_subscription.py failed: {exc}", file=sys.stderr)
+        raise

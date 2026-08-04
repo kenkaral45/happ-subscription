@@ -1,0 +1,38 @@
+name: Update subscription
+
+on:
+  schedule:
+    # 22:00 UTC is 03:00 in Asia/Yekaterinburg.
+    - cron: "0 22 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Refresh subscription catalog
+        run: python scripts/refresh_subscription.py
+
+      - name: Commit and push changes
+        run: |
+          if git diff --quiet -- whitelist_configs_combined.json; then
+            echo "No subscription changes"
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add whitelist_configs_combined.json
+          git commit -m "Replace catalog with site subscription"
+          git push
