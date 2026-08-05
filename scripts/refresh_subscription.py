@@ -7,7 +7,7 @@ import urllib.request
 from pathlib import Path
 
 
-SUBSCRIPTION_URL = "https://connliberty.com/connection/subs/d950be8a-ab95-4618-bf67-21b76c969342?r=1"
+SUBSCRIPTION_URL = "https://connliberty.com/connection/tunnel/d950be8a-ab95-4618-bf67-21b76c969342?r=1"
 CATALOG_PATH = Path("whitelist_configs_combined.json")
 CONFIG_KEYS = {"remarks", "outbounds", "routing"}
 CANONICAL_DIRECT_OUTBOUND = {
