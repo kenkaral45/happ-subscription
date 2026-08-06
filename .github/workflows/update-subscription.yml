@@ -2,9 +2,13 @@ name: Update subscription
 
 on:
   schedule:
-    # Run once per hour.
-    - cron: "0 * * * *"
+    # Run once per hour, away from GitHub's busy top-of-hour window.
+    - cron: "17 * * * *"
   workflow_dispatch:
+
+concurrency:
+  group: subscription-refresh
+  cancel-in-progress: false
 
 permissions:
   contents: write
