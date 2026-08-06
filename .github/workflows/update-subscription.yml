@@ -2,8 +2,8 @@ name: Update subscription
 
 on:
   schedule:
-    # 22:00 UTC is 03:00 in Asia/Yekaterinburg.
-    - cron: "0 22 * * *"
+    # Run once per hour.
+    - cron: "0 * * * *"
   workflow_dispatch:
 
 permissions:
