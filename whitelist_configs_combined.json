@@ -10474,41 +10474,32 @@
     },
     "outbounds": [
       {
-        "mux": {
-          "concurrency": -1,
-          "enabled": false
-        },
-        "protocol": "vless",
+        "protocol": "hysteria",
         "settings": {
-          "vnext": [
-            {
-              "address": "d9yrc.guardora.pro",
-              "port": 2027,
-              "users": [
-                {
-                  "encryption": "none",
-                  "flow": "xtls-rprx-vision",
-                  "id": "48235668-f3f0-4e7c-a8b2-190ddf7a5b37",
-                  "level": 8
-                }
-              ]
-            }
-          ]
+          "address": "91.185.83.116",
+          "port": 9443,
+          "version": 2
         },
         "streamSettings": {
-          "network": "tcp",
-          "security": "reality",
-          "realitySettings": {
-            "allowInsecure": false,
-            "fingerprint": "firefox",
-            "publicKey": "ISa-DZOI4LRRb9DHMFYm5oFqBXDjYzz0hVWUfWvzLmo",
-            "serverName": "storage.yandex.net",
-            "shortId": "5be97fb85093a3a9",
-            "show": false
+          "hysteriaSettings": {
+            "auth": "48235668-f3f0-4e7c-a8b2-190ddf7a5b37",
+            "version": 2
           },
-          "tcpSettings": {
-            "header": {
-              "type": "none"
+          "network": "hysteria",
+          "security": "tls",
+          "tlsSettings": {
+            "allowInsecure": false,
+            "alpn": [
+              "h3"
+            ],
+            "serverName": "sni.fi-m247-02.com",
+            "show": false,
+            "fingerprint": "firefox"
+          },
+          "finalmask": {
+            "quicParams": {
+              "debug": false,
+              "congestion": "bbr"
             }
           }
         },
@@ -10538,9 +10529,10 @@
       "rules": [
         {
           "type": "field",
-          "network": "udp",
-          "port": "443",
-          "outboundTag": "block"
+          "protocol": [
+            "bittorrent"
+          ],
+          "outboundTag": "direct"
         },
         {
           "type": "field",
@@ -10773,13 +10765,6 @@
             "domain:t-tech.team",
             "domain:paywb.com"
           ]
-        },
-        {
-          "type": "field",
-          "protocol": [
-            "bittorrent"
-          ],
-          "outboundTag": "direct"
         }
       ]
     }
@@ -10835,6 +10820,47 @@
         "settings": {
           "vnext": [
             {
+              "address": "154.84.164.10",
+              "port": 443,
+              "users": [
+                {
+                  "encryption": "none",
+                  "flow": "xtls-rprx-vision",
+                  "id": "48235668-f3f0-4e7c-a8b2-190ddf7a5b37",
+                  "level": 8
+                }
+              ]
+            }
+          ]
+        },
+        "streamSettings": {
+          "network": "tcp",
+          "security": "reality",
+          "realitySettings": {
+            "allowInsecure": false,
+            "fingerprint": "firefox",
+            "publicKey": "pPi-WO8qQFFZ9UJWNLW9YClbjcoAAZWJQ2_FM3Kjhz8",
+            "serverName": "storage.yandex.net",
+            "shortId": "d3ee47fc2f553c44",
+            "show": false
+          },
+          "tcpSettings": {
+            "header": {
+              "type": "none"
+            }
+          }
+        },
+        "tag": "proxy-decoy-154-84-164-10-direct"
+      },
+      {
+        "mux": {
+          "concurrency": -1,
+          "enabled": false
+        },
+        "protocol": "vless",
+        "settings": {
+          "vnext": [
+            {
               "address": "45.195.111.123",
               "port": 443,
               "users": [
@@ -10866,47 +10892,6 @@
           }
         },
         "tag": "proxy-decoy-45-195-111-123-direct"
-      },
-      {
-        "mux": {
-          "concurrency": -1,
-          "enabled": false
-        },
-        "protocol": "vless",
-        "settings": {
-          "vnext": [
-            {
-              "address": "45.192.2.42",
-              "port": 443,
-              "users": [
-                {
-                  "encryption": "none",
-                  "flow": "xtls-rprx-vision",
-                  "id": "48235668-f3f0-4e7c-a8b2-190ddf7a5b37",
-                  "level": 8
-                }
-              ]
-            }
-          ]
-        },
-        "streamSettings": {
-          "network": "tcp",
-          "security": "reality",
-          "realitySettings": {
-            "allowInsecure": false,
-            "fingerprint": "firefox",
-            "publicKey": "1oUeBtHH4DskTM_jCh-6enWRkFMDX9l1OU5kWYl4kxA",
-            "serverName": "storage.yandex.net",
-            "shortId": "f34818a561dfd1fe",
-            "show": false
-          },
-          "tcpSettings": {
-            "header": {
-              "type": "none"
-            }
-          }
-        },
-        "tag": "proxy-decoy-45-192-2-42-direct"
       },
       {
         "mux": {
@@ -11332,7 +11317,7 @@
         "settings": {
           "vnext": [
             {
-              "address": "45.195.228.26",
+              "address": "45.198.96.210",
               "port": 443,
               "users": [
                 {
@@ -11351,9 +11336,9 @@
           "realitySettings": {
             "allowInsecure": false,
             "fingerprint": "firefox",
-            "publicKey": "KYlgK96xPZJq10GbhF-BaCXRxXc9XzxzfICdooYvMlg",
+            "publicKey": "9Y-_jCI3Z1x6SXK2tHdZ6V1CN9IJPNPnoxSW0cbXxD8",
             "serverName": "storage.yandex.net",
-            "shortId": "d020b987f84eb78a",
+            "shortId": "d2c6d9f6e6e12bfe",
             "show": false
           },
           "tcpSettings": {
@@ -11362,7 +11347,7 @@
             }
           }
         },
-        "tag": "proxy-decoy-45-195-228-26-direct"
+        "tag": "proxy-decoy-45-198-96-210-direct"
       },
       {
         "mux": {
@@ -11373,7 +11358,7 @@
         "settings": {
           "vnext": [
             {
-              "address": "45.196.193.123",
+              "address": "45.206.52.230",
               "port": 443,
               "users": [
                 {
@@ -11392,9 +11377,9 @@
           "realitySettings": {
             "allowInsecure": false,
             "fingerprint": "firefox",
-            "publicKey": "IdqrygjwHBEMCOamBl7a504TVk6uMAtTRj0xLWcFcxY",
+            "publicKey": "dY9SNEllJMW63xo-JdXufhmjAxB_4uFw_QMjgufjiD8",
             "serverName": "storage.yandex.net",
-            "shortId": "cf9d145ad8f1ea55",
+            "shortId": "c20b1035d72d7793",
             "show": false
           },
           "tcpSettings": {
@@ -11403,7 +11388,7 @@
             }
           }
         },
-        "tag": "proxy-decoy-45-196-193-123-direct"
+        "tag": "proxy-decoy-45-206-52-230-direct"
       },
       {
         "protocol": "hysteria",
@@ -11796,7 +11781,7 @@
         "settings": {
           "vnext": [
             {
-              "address": "45.192.2.42",
+              "address": "45.195.111.123",
               "port": 443,
               "users": [
                 {
@@ -11815,9 +11800,9 @@
           "realitySettings": {
             "allowInsecure": false,
             "fingerprint": "firefox",
-            "publicKey": "1oUeBtHH4DskTM_jCh-6enWRkFMDX9l1OU5kWYl4kxA",
+            "publicKey": "7zd9mJilgjOrg_ohtw23Vmio-pdnYqeP_r-kiWt87Cg",
             "serverName": "storage.yandex.net",
-            "shortId": "f34818a561dfd1fe",
+            "shortId": "f4b4a6365558ea2e",
             "show": false
           },
           "tcpSettings": {
@@ -11826,7 +11811,7 @@
             }
           }
         },
-        "tag": "proxy-decoy-45-192-2-42-direct"
+        "tag": "proxy-decoy-45-195-111-123-direct"
       },
       {
         "mux": {
@@ -11837,7 +11822,7 @@
         "settings": {
           "vnext": [
             {
-              "address": "154.83.246.225",
+              "address": "45.196.208.84",
               "port": 443,
               "users": [
                 {
@@ -11856,9 +11841,9 @@
           "realitySettings": {
             "allowInsecure": false,
             "fingerprint": "firefox",
-            "publicKey": "pPi-WO8qQFFZ9UJWNLW9YClbjcoAAZWJQ2_FM3Kjhz8",
+            "publicKey": "zr8_rtHm86s_G1gfRwNtunStGngYZSdYkA3PyBFXpDg",
             "serverName": "storage.yandex.net",
-            "shortId": "500aec9e9e5e2212",
+            "shortId": "28047c78b3f5ee2c",
             "show": false
           },
           "tcpSettings": {
@@ -11867,7 +11852,7 @@
             }
           }
         },
-        "tag": "proxy-decoy-154-83-246-225-direct"
+        "tag": "proxy-decoy-45-196-208-84-direct"
       },
       {
         "mux": {
@@ -12277,7 +12262,7 @@
         "settings": {
           "vnext": [
             {
-              "address": "45.198.96.210",
+              "address": "45.195.111.123",
               "port": 443,
               "users": [
                 {
@@ -12296,9 +12281,9 @@
           "realitySettings": {
             "allowInsecure": false,
             "fingerprint": "firefox",
-            "publicKey": "9Y-_jCI3Z1x6SXK2tHdZ6V1CN9IJPNPnoxSW0cbXxD8",
+            "publicKey": "7zd9mJilgjOrg_ohtw23Vmio-pdnYqeP_r-kiWt87Cg",
             "serverName": "storage.yandex.net",
-            "shortId": "d2c6d9f6e6e12bfe",
+            "shortId": "f4b4a6365558ea2e",
             "show": false
           },
           "tcpSettings": {
@@ -12307,7 +12292,7 @@
             }
           }
         },
-        "tag": "proxy-decoy-45-198-96-210-direct"
+        "tag": "proxy-decoy-45-195-111-123-direct"
       },
       {
         "mux": {
@@ -12318,7 +12303,7 @@
         "settings": {
           "vnext": [
             {
-              "address": "45.206.52.230",
+              "address": "154.84.164.10",
               "port": 443,
               "users": [
                 {
@@ -12337,9 +12322,9 @@
           "realitySettings": {
             "allowInsecure": false,
             "fingerprint": "firefox",
-            "publicKey": "dY9SNEllJMW63xo-JdXufhmjAxB_4uFw_QMjgufjiD8",
+            "publicKey": "pPi-WO8qQFFZ9UJWNLW9YClbjcoAAZWJQ2_FM3Kjhz8",
             "serverName": "storage.yandex.net",
-            "shortId": "c20b1035d72d7793",
+            "shortId": "d3ee47fc2f553c44",
             "show": false
           },
           "tcpSettings": {
@@ -12348,7 +12333,7 @@
             }
           }
         },
-        "tag": "proxy-decoy-45-206-52-230-direct"
+        "tag": "proxy-decoy-154-84-164-10-direct"
       },
       {
         "protocol": "hysteria",
@@ -12741,7 +12726,7 @@
         "settings": {
           "vnext": [
             {
-              "address": "45.192.2.42",
+              "address": "154.222.9.166",
               "port": 443,
               "users": [
                 {
@@ -12760,9 +12745,9 @@
           "realitySettings": {
             "allowInsecure": false,
             "fingerprint": "firefox",
-            "publicKey": "1oUeBtHH4DskTM_jCh-6enWRkFMDX9l1OU5kWYl4kxA",
+            "publicKey": "ISa-DZOI4LRRb9DHMFYm5oFqBXDjYzz0hVWUfWvzLmo",
             "serverName": "storage.yandex.net",
-            "shortId": "f34818a561dfd1fe",
+            "shortId": "8d3293f0066e129a",
             "show": false
           },
           "tcpSettings": {
@@ -12771,7 +12756,7 @@
             }
           }
         },
-        "tag": "proxy-decoy-45-192-2-42-direct"
+        "tag": "proxy-decoy-154-222-9-166-direct"
       },
       {
         "mux": {
@@ -12782,7 +12767,7 @@
         "settings": {
           "vnext": [
             {
-              "address": "154.83.246.225",
+              "address": "45.196.208.84",
               "port": 443,
               "users": [
                 {
@@ -12801,9 +12786,9 @@
           "realitySettings": {
             "allowInsecure": false,
             "fingerprint": "firefox",
-            "publicKey": "pPi-WO8qQFFZ9UJWNLW9YClbjcoAAZWJQ2_FM3Kjhz8",
+            "publicKey": "zr8_rtHm86s_G1gfRwNtunStGngYZSdYkA3PyBFXpDg",
             "serverName": "storage.yandex.net",
-            "shortId": "500aec9e9e5e2212",
+            "shortId": "28047c78b3f5ee2c",
             "show": false
           },
           "tcpSettings": {
@@ -12812,7 +12797,7 @@
             }
           }
         },
-        "tag": "proxy-decoy-154-83-246-225-direct"
+        "tag": "proxy-decoy-45-196-208-84-direct"
       },
       {
         "mux": {
