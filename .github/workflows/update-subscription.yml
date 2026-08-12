@@ -26,6 +26,14 @@ jobs:
           python-version: "3.12"
 
       - name: Refresh subscription catalog
+        env:
+          DIRECT_EXTRA_DOMAINS: |-
+            domain:funpay.com
+            domain:lis-skins.com
+            domain:ggsel.net
+            domain:www.hltv.org
+            domain:docs.varwin.com
+            domain:varwin.com
         run: python scripts/refresh_subscription.py
 
       - name: Commit and push changes

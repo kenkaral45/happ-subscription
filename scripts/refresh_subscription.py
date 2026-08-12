@@ -97,6 +97,19 @@ def current_direct_domains(configs):
     raise RuntimeError("Could not find the approved direct domain list in the current catalog")
 
 
+def configured_extra_direct_domains():
+    raw_value = os.environ.get("DIRECT_EXTRA_DOMAINS", "")
+    return [line.strip() for line in raw_value.splitlines() if line.strip()]
+
+
+def extend_direct_domains(direct_domains):
+    result = list(direct_domains)
+    for domain in configured_extra_direct_domains():
+        if domain not in result:
+            result.append(domain)
+    return result
+
+
 def normalize_direct(config, direct_domains):
     outbounds = [
         outbound for outbound in config.get("outbounds", []) if outbound.get("tag") != "direct"
@@ -155,7 +168,7 @@ def validate(configs, source_count, direct_domains):
 
 def main():
     current_configs = load_json(CATALOG_PATH)
-    direct_domains = current_direct_domains(current_configs)
+    direct_domains = extend_direct_domains(current_direct_domains(current_configs))
 
     source_configs = extract_configs(fetch_subscription_text())
     final_configs = [copy.deepcopy(config) for config in source_configs]
