@@ -153,7 +153,7 @@
             "fingerprint": "firefox",
             "publicKey": "zr8_rtHm86s_G1gfRwNtunStGngYZSdYkA3PyBFXpDg",
             "serverName": "storage.yandex.net",
-            "shortId": "04bf0403f96e5b4b",
+            "shortId": "48fccabc158a4c22",
             "show": false
           },
           "tcpSettings": {
@@ -317,7 +317,7 @@
             "fingerprint": "firefox",
             "publicKey": "pPi-WO8qQFFZ9UJWNLW9YClbjcoAAZWJQ2_FM3Kjhz8",
             "serverName": "storage.yandex.net",
-            "shortId": "d3ee47fc2f553c44",
+            "shortId": "500aec9e9e5e2212",
             "show": false
           },
           "tcpSettings": {
@@ -358,7 +358,7 @@
             "fingerprint": "firefox",
             "publicKey": "9Y-_jCI3Z1x6SXK2tHdZ6V1CN9IJPNPnoxSW0cbXxD8",
             "serverName": "storage.yandex.net",
-            "shortId": "764f497dda21c4fc",
+            "shortId": "50e09046c0c00159",
             "show": false
           },
           "tcpSettings": {
@@ -481,7 +481,7 @@
             "fingerprint": "firefox",
             "publicKey": "1oUeBtHH4DskTM_jCh-6enWRkFMDX9l1OU5kWYl4kxA",
             "serverName": "storage.yandex.net",
-            "shortId": "364994a6f61fc955",
+            "shortId": "f34818a561dfd1fe",
             "show": false
           },
           "tcpSettings": {
@@ -563,7 +563,7 @@
             "fingerprint": "firefox",
             "publicKey": "66-fz0xjwauydj29EfFKyPHjJ2CIGaGSsJ6hsB--zAc",
             "serverName": "storage.yandex.net",
-            "shortId": "6ecdb111a4e57f94",
+            "shortId": "a1cb4af60a34ff8e",
             "show": false
           },
           "tcpSettings": {
@@ -1679,7 +1679,7 @@
             "fingerprint": "firefox",
             "publicKey": "zr8_rtHm86s_G1gfRwNtunStGngYZSdYkA3PyBFXpDg",
             "serverName": "storage.yandex.net",
-            "shortId": "04bf0403f96e5b4b",
+            "shortId": "48fccabc158a4c22",
             "show": false
           },
           "tcpSettings": {
@@ -2393,7 +2393,7 @@
             "fingerprint": "firefox",
             "publicKey": "_CjW0Khlrr5z5oc9Oy6-w2ZEanz-zMBktVn5EOX9oTM",
             "serverName": "storage.yandex.net",
-            "shortId": "f32140952ba18e18",
+            "shortId": "4ffc99daad0f261f",
             "show": false
           },
           "tcpSettings": {
@@ -3107,7 +3107,7 @@
             "fingerprint": "firefox",
             "publicKey": "pPi-WO8qQFFZ9UJWNLW9YClbjcoAAZWJQ2_FM3Kjhz8",
             "serverName": "storage.yandex.net",
-            "shortId": "d3ee47fc2f553c44",
+            "shortId": "500aec9e9e5e2212",
             "show": false
           },
           "tcpSettings": {
@@ -3464,7 +3464,7 @@
             "fingerprint": "firefox",
             "publicKey": "9Y-_jCI3Z1x6SXK2tHdZ6V1CN9IJPNPnoxSW0cbXxD8",
             "serverName": "storage.yandex.net",
-            "shortId": "764f497dda21c4fc",
+            "shortId": "50e09046c0c00159",
             "show": false
           },
           "tcpSettings": {
@@ -3821,7 +3821,7 @@
             "fingerprint": "firefox",
             "publicKey": "8qHRGcCezzSu4S-Cz9l19BNRLWm4MkaSwZV3dNrLEwc",
             "serverName": "storage.yandex.net",
-            "shortId": "d515d6cfdfe60b02",
+            "shortId": "d037f6f67cc90016",
             "show": false
           },
           "tcpSettings": {
@@ -4535,7 +4535,7 @@
             "fingerprint": "firefox",
             "publicKey": "dY9SNEllJMW63xo-JdXufhmjAxB_4uFw_QMjgufjiD8",
             "serverName": "storage.yandex.net",
-            "shortId": "ea10cd5686751ec5",
+            "shortId": "37772edff71b4167",
             "show": false
           },
           "tcpSettings": {
@@ -4892,7 +4892,7 @@
             "fingerprint": "firefox",
             "publicKey": "1oUeBtHH4DskTM_jCh-6enWRkFMDX9l1OU5kWYl4kxA",
             "serverName": "storage.yandex.net",
-            "shortId": "364994a6f61fc955",
+            "shortId": "f34818a561dfd1fe",
             "show": false
           },
           "tcpSettings": {
@@ -5606,7 +5606,7 @@
             "fingerprint": "firefox",
             "publicKey": "66-fz0xjwauydj29EfFKyPHjJ2CIGaGSsJ6hsB--zAc",
             "serverName": "storage.yandex.net",
-            "shortId": "6ecdb111a4e57f94",
+            "shortId": "a1cb4af60a34ff8e",
             "show": false
           },
           "tcpSettings": {
@@ -6279,7 +6279,7 @@
         "protocol": "hysteria",
         "settings": {
           "address": "45.196.193.138",
-          "port": 8449,
+          "port": 8440,
           "version": 2
         },
         "streamSettings": {
@@ -6294,7 +6294,7 @@
             "alpn": [
               "h3"
             ],
-            "serverName": "263160.gt-ch-02.live",
+            "serverName": "sni263160.jasontech.online",
             "show": false,
             "fingerprint": "firefox"
           },
@@ -6621,7 +6621,7 @@
         "protocol": "hysteria",
         "settings": {
           "address": "45.196.193.138",
-          "port": 8440,
+          "port": 8449,
           "version": 2
         },
         "streamSettings": {
@@ -6636,7 +6636,7 @@
             "alpn": [
               "h3"
             ],
-            "serverName": "sni263160.jasontech.online",
+            "serverName": "263160.gt-ch-02.live",
             "show": false,
             "fingerprint": "firefox"
           },
@@ -8759,7 +8759,7 @@
             "fingerprint": "firefox",
             "publicKey": "rZgu2lJcC2yrYnx66znee-Z75mW6m4TRfWt7_neoEVI",
             "serverName": "rbc.ru",
-            "shortId": "caa0a516476ad539",
+            "shortId": "1c74cf626ef50bb3",
             "show": false
           },
           "tcpSettings": {
@@ -10187,7 +10187,7 @@
             "fingerprint": "chrome",
             "publicKey": "uWB8HfNVK_-9KtjDGjmBovnYxTh6wN95APRUBmCC30M",
             "serverName": "max.ru",
-            "shortId": "348fac7c65368555",
+            "shortId": "fe31454fcc98d74d",
             "show": false
           },
           "tcpSettings": {
@@ -10544,7 +10544,7 @@
             "fingerprint": "firefox",
             "publicKey": "CwOLLTLuQN1SPzvenr_B_ErYYoOB_ScSvGvH-iYOtF8",
             "serverName": "storage.yandex.net",
-            "shortId": "83780413c2ad3eaa",
+            "shortId": "98f4e12d491b58ec",
             "show": false
           },
           "tcpSettings": {
@@ -10901,7 +10901,7 @@
             "fingerprint": "firefox",
             "publicKey": "NtsJnsHr8a9mPDr0SPxdJlSRbdUVmR_-Rq5RVT-3KzA",
             "serverName": "storage.yandex.net",
-            "shortId": "58a6be9762c769f2",
+            "shortId": "51495959c262c442",
             "show": false
           },
           "tcpSettings": {
@@ -11231,40 +11231,42 @@
       {
         "mux": {
           "concurrency": -1,
-          "enabled": false
+          "enabled": false,
+          "xudpConcurrency": 8,
+          "xudpProxyUDP443": ""
         },
         "protocol": "vless",
         "settings": {
           "vnext": [
             {
-              "address": "d9yrc.guardora.pro",
-              "port": 2027,
+              "address": "zapravki.benz.ink",
+              "port": 443,
               "users": [
                 {
                   "encryption": "none",
-                  "flow": "xtls-rprx-vision",
+                  "flow": "",
                   "id": "48235668-f3f0-4e7c-a8b2-190ddf7a5b37",
-                  "level": 8
+                  "level": 8,
+                  "security": "auto"
                 }
               ]
             }
           ]
         },
         "streamSettings": {
-          "network": "tcp",
-          "security": "reality",
-          "realitySettings": {
+          "network": "ws",
+          "security": "tls",
+          "tlsSettings": {
             "allowInsecure": false,
-            "fingerprint": "firefox",
-            "publicKey": "ISa-DZOI4LRRb9DHMFYm5oFqBXDjYzz0hVWUfWvzLmo",
-            "serverName": "storage.yandex.net",
-            "shortId": "5be97fb85093a3a9",
+            "fingerprint": "",
+            "serverName": "zapravki.benz.ink",
             "show": false
           },
-          "tcpSettings": {
-            "header": {
-              "type": "none"
-            }
+          "wsSettings": {
+            "headers": {
+              "Host": "zapravki.benz.ink"
+            },
+            "path": "/api/v2/camera/events/8f4c2d"
           }
         },
         "tag": "proxy"
@@ -11594,7 +11596,7 @@
         "settings": {
           "vnext": [
             {
-              "address": "45.195.228.198",
+              "address": "154.222.9.98",
               "port": 443,
               "users": [
                 {
@@ -11613,9 +11615,9 @@
           "realitySettings": {
             "allowInsecure": false,
             "fingerprint": "firefox",
-            "publicKey": "66-fz0xjwauydj29EfFKyPHjJ2CIGaGSsJ6hsB--zAc",
+            "publicKey": "ISa-DZOI4LRRb9DHMFYm5oFqBXDjYzz0hVWUfWvzLmo",
             "serverName": "storage.yandex.net",
-            "shortId": "6ecdb111a4e57f94",
+            "shortId": "8d3293f0066e129a",
             "show": false
           },
           "tcpSettings": {
@@ -11624,7 +11626,7 @@
             }
           }
         },
-        "tag": "proxy-decoy-45-195-228-198-direct"
+        "tag": "proxy-decoy-154-222-9-98-direct"
       },
       {
         "mux": {
@@ -11635,7 +11637,7 @@
         "settings": {
           "vnext": [
             {
-              "address": "45.192.2.57",
+              "address": "45.198.96.210",
               "port": 443,
               "users": [
                 {
@@ -11654,9 +11656,9 @@
           "realitySettings": {
             "allowInsecure": false,
             "fingerprint": "firefox",
-            "publicKey": "1oUeBtHH4DskTM_jCh-6enWRkFMDX9l1OU5kWYl4kxA",
+            "publicKey": "9Y-_jCI3Z1x6SXK2tHdZ6V1CN9IJPNPnoxSW0cbXxD8",
             "serverName": "storage.yandex.net",
-            "shortId": "364994a6f61fc955",
+            "shortId": "50e09046c0c00159",
             "show": false
           },
           "tcpSettings": {
@@ -11665,7 +11667,7 @@
             }
           }
         },
-        "tag": "proxy-decoy-45-192-2-57-direct"
+        "tag": "proxy-decoy-45-198-96-210-direct"
       },
       {
         "mux": {
@@ -12079,8 +12081,8 @@
         "settings": {
           "vnext": [
             {
-              "address": "154.84.164.10",
-              "port": 443,
+              "address": "45.196.214.192",
+              "port": 8443,
               "users": [
                 {
                   "encryption": "none",
@@ -12098,9 +12100,9 @@
           "realitySettings": {
             "allowInsecure": false,
             "fingerprint": "firefox",
-            "publicKey": "pPi-WO8qQFFZ9UJWNLW9YClbjcoAAZWJQ2_FM3Kjhz8",
+            "publicKey": "_CjW0Khlrr5z5oc9Oy6-w2ZEanz-zMBktVn5EOX9oTM",
             "serverName": "storage.yandex.net",
-            "shortId": "d3ee47fc2f553c44",
+            "shortId": "4ffc99daad0f261f",
             "show": false
           },
           "tcpSettings": {
@@ -12109,7 +12111,7 @@
             }
           }
         },
-        "tag": "proxy-decoy-154-84-164-10-direct"
+        "tag": "proxy-decoy-45-196-214-192-direct"
       },
       {
         "mux": {
@@ -12120,7 +12122,7 @@
         "settings": {
           "vnext": [
             {
-              "address": "45.206.52.230",
+              "address": "45.195.228.24",
               "port": 443,
               "users": [
                 {
@@ -12139,9 +12141,9 @@
           "realitySettings": {
             "allowInsecure": false,
             "fingerprint": "firefox",
-            "publicKey": "dY9SNEllJMW63xo-JdXufhmjAxB_4uFw_QMjgufjiD8",
+            "publicKey": "KYlgK96xPZJq10GbhF-BaCXRxXc9XzxzfICdooYvMlg",
             "serverName": "storage.yandex.net",
-            "shortId": "ea10cd5686751ec5",
+            "shortId": "f45c9665f3261108",
             "show": false
           },
           "tcpSettings": {
@@ -12150,7 +12152,7 @@
             }
           }
         },
-        "tag": "proxy-decoy-45-206-52-230-direct"
+        "tag": "proxy-decoy-45-195-228-24-direct"
       },
       {
         "protocol": "hysteria",
@@ -12547,7 +12549,7 @@
         "settings": {
           "vnext": [
             {
-              "address": "154.222.9.98",
+              "address": "154.83.246.2",
               "port": 443,
               "users": [
                 {
@@ -12566,9 +12568,9 @@
           "realitySettings": {
             "allowInsecure": false,
             "fingerprint": "firefox",
-            "publicKey": "ISa-DZOI4LRRb9DHMFYm5oFqBXDjYzz0hVWUfWvzLmo",
+            "publicKey": "pPi-WO8qQFFZ9UJWNLW9YClbjcoAAZWJQ2_FM3Kjhz8",
             "serverName": "storage.yandex.net",
-            "shortId": "8d3293f0066e129a",
+            "shortId": "da147b40372a5fed",
             "show": false
           },
           "tcpSettings": {
@@ -12577,7 +12579,7 @@
             }
           }
         },
-        "tag": "proxy-decoy-154-222-9-98-direct"
+        "tag": "proxy-decoy-154-83-246-2-direct"
       },
       {
         "mux": {
@@ -12588,7 +12590,7 @@
         "settings": {
           "vnext": [
             {
-              "address": "154.222.9.228",
+              "address": "45.196.208.16",
               "port": 443,
               "users": [
                 {
@@ -12607,9 +12609,9 @@
           "realitySettings": {
             "allowInsecure": false,
             "fingerprint": "firefox",
-            "publicKey": "ISa-DZOI4LRRb9DHMFYm5oFqBXDjYzz0hVWUfWvzLmo",
+            "publicKey": "zr8_rtHm86s_G1gfRwNtunStGngYZSdYkA3PyBFXpDg",
             "serverName": "storage.yandex.net",
-            "shortId": "5be97fb85093a3a9",
+            "shortId": "48fccabc158a4c22",
             "show": false
           },
           "tcpSettings": {
@@ -12618,7 +12620,7 @@
             }
           }
         },
-        "tag": "proxy-decoy-154-222-9-228-direct"
+        "tag": "proxy-decoy-45-196-208-16-direct"
       },
       {
         "mux": {
@@ -12629,15 +12631,14 @@
         "settings": {
           "vnext": [
             {
-              "address": "188.72.103.4",
-              "port": 443,
+              "address": "95.163.232.194",
+              "port": 8444,
               "users": [
                 {
                   "encryption": "none",
                   "flow": "",
                   "id": "48235668-f3f0-4e7c-a8b2-190ddf7a5b37",
-                  "level": 8,
-                  "security": "auto"
+                  "level": 8
                 }
               ]
             }
@@ -12645,39 +12646,32 @@
         },
         "streamSettings": {
           "network": "xhttp",
-          "security": "tls",
-          "tlsSettings": {
+          "security": "reality",
+          "realitySettings": {
             "allowInsecure": false,
-            "serverName": "cdn.tracker.yandex.net",
+            "fingerprint": "firefox",
+            "publicKey": "YaqfDQpUBDr5Q93AXGoJrWvs1PtiHkKloHh2J2xDc0I",
+            "serverName": "strm.yandex.net",
+            "shortId": "78a845a7ce1ca91d",
             "show": false
           },
           "xhttpSettings": {
             "extra": {
-              "seqKey": "",
-              "sessionKey": "",
-              "noSSEHeader": false,
-              "xPaddingKey": "",
-              "seqPlacement": "",
-              "uplinkDataKey": "",
-              "xPaddingBytes": "0-0",
-              "xPaddingHeader": "",
-              "xPaddingMethod": "",
-              "uplinkChunkSize": 0,
-              "sessionPlacement": "",
-              "uplinkHTTPMethod": "GET",
-              "xPaddingObfsMode": false,
-              "xPaddingPlacement": "",
-              "scMaxBufferedPosts": 30,
-              "scMaxEachPostBytes": "1000000",
-              "uplinkDataPlacement": "",
-              "scStreamUpServerSecs": "20-80"
+              "xmux": {
+                "cMaxReuseTimes": "256-512",
+                "maxConcurrency": "16-32",
+                "maxConnections": 0,
+                "hKeepAlivePeriod": 0,
+                "hMaxReusableSecs": "900-1500"
+              },
+              "xPaddingBytes": "50-150"
             },
-            "host": "web994.doaebqelqsqd.online",
-            "mode": "packet-up",
-            "path": "/livestreamcontent/"
+            "host": "",
+            "mode": "stream-one",
+            "path": "/api/v2/stream/by-group-id/a0672485620ba65b"
           }
         },
-        "tag": "proxy-wl-188-72-103-4"
+        "tag": "proxy-wl-95-163-232-194"
       },
       {
         "protocol": "blackhole",
@@ -12696,7 +12690,7 @@
         "tag": "direct"
       }
     ],
-    "remarks": "🇩🇪⚪Германия (БС-1) ☁️",
+    "remarks": "🇨🇭⚪Швейцария (БС-3) ☁️",
     "routing": {
       "domainStrategy": "IPIfNonMatch",
       "domainMatcher": "hybrid",
@@ -12974,13 +12968,13 @@
               "tolerance": 0,
               "costs": [
                 {
-                  "match": "proxy-wl-188-72-103-4",
+                  "match": "proxy-wl-95-163-232-194",
                   "value": 10
                 }
               ]
             }
           },
-          "fallbackTag": "proxy-wl-188-72-103-4"
+          "fallbackTag": "proxy-wl-95-163-232-194"
         }
       ]
     },
@@ -13048,7 +13042,7 @@
         "settings": {
           "vnext": [
             {
-              "address": "45.198.96.210",
+              "address": "154.222.9.98",
               "port": 443,
               "users": [
                 {
@@ -13067,9 +13061,9 @@
           "realitySettings": {
             "allowInsecure": false,
             "fingerprint": "firefox",
-            "publicKey": "9Y-_jCI3Z1x6SXK2tHdZ6V1CN9IJPNPnoxSW0cbXxD8",
+            "publicKey": "ISa-DZOI4LRRb9DHMFYm5oFqBXDjYzz0hVWUfWvzLmo",
             "serverName": "storage.yandex.net",
-            "shortId": "764f497dda21c4fc",
+            "shortId": "8d3293f0066e129a",
             "show": false
           },
           "tcpSettings": {
@@ -13078,7 +13072,7 @@
             }
           }
         },
-        "tag": "proxy-decoy-45-198-96-210-direct"
+        "tag": "proxy-decoy-154-222-9-98-direct"
       },
       {
         "mux": {
@@ -13089,7 +13083,7 @@
         "settings": {
           "vnext": [
             {
-              "address": "45.195.111.196",
+              "address": "45.195.228.24",
               "port": 443,
               "users": [
                 {
@@ -13108,9 +13102,9 @@
           "realitySettings": {
             "allowInsecure": false,
             "fingerprint": "firefox",
-            "publicKey": "7zd9mJilgjOrg_ohtw23Vmio-pdnYqeP_r-kiWt87Cg",
+            "publicKey": "KYlgK96xPZJq10GbhF-BaCXRxXc9XzxzfICdooYvMlg",
             "serverName": "storage.yandex.net",
-            "shortId": "2715592069f36fe7",
+            "shortId": "f45c9665f3261108",
             "show": false
           },
           "tcpSettings": {
@@ -13119,7 +13113,7 @@
             }
           }
         },
-        "tag": "proxy-decoy-45-195-111-196-direct"
+        "tag": "proxy-decoy-45-195-228-24-direct"
       },
       {
         "protocol": "hysteria",
@@ -13537,7 +13531,7 @@
             "fingerprint": "firefox",
             "publicKey": "_CjW0Khlrr5z5oc9Oy6-w2ZEanz-zMBktVn5EOX9oTM",
             "serverName": "storage.yandex.net",
-            "shortId": "f32140952ba18e18",
+            "shortId": "4ffc99daad0f261f",
             "show": false
           },
           "tcpSettings": {
@@ -13557,7 +13551,7 @@
         "settings": {
           "vnext": [
             {
-              "address": "154.222.9.98",
+              "address": "45.196.193.138",
               "port": 443,
               "users": [
                 {
@@ -13576,9 +13570,9 @@
           "realitySettings": {
             "allowInsecure": false,
             "fingerprint": "firefox",
-            "publicKey": "ISa-DZOI4LRRb9DHMFYm5oFqBXDjYzz0hVWUfWvzLmo",
+            "publicKey": "IdqrygjwHBEMCOamBl7a504TVk6uMAtTRj0xLWcFcxY",
             "serverName": "storage.yandex.net",
-            "shortId": "8d3293f0066e129a",
+            "shortId": "40ce08cf20c67003",
             "show": false
           },
           "tcpSettings": {
@@ -13587,7 +13581,7 @@
             }
           }
         },
-        "tag": "proxy-decoy-154-222-9-98-direct"
+        "tag": "proxy-decoy-45-196-193-138-direct"
       },
       {
         "mux": {
@@ -13999,7 +13993,7 @@
         "settings": {
           "vnext": [
             {
-              "address": "154.222.9.228",
+              "address": "45.192.2.57",
               "port": 443,
               "users": [
                 {
@@ -14018,9 +14012,9 @@
           "realitySettings": {
             "allowInsecure": false,
             "fingerprint": "firefox",
-            "publicKey": "ISa-DZOI4LRRb9DHMFYm5oFqBXDjYzz0hVWUfWvzLmo",
+            "publicKey": "1oUeBtHH4DskTM_jCh-6enWRkFMDX9l1OU5kWYl4kxA",
             "serverName": "storage.yandex.net",
-            "shortId": "5be97fb85093a3a9",
+            "shortId": "f34818a561dfd1fe",
             "show": false
           },
           "tcpSettings": {
@@ -14029,7 +14023,7 @@
             }
           }
         },
-        "tag": "proxy-decoy-154-222-9-228-direct"
+        "tag": "proxy-decoy-45-192-2-57-direct"
       },
       {
         "mux": {
@@ -14040,8 +14034,8 @@
         "settings": {
           "vnext": [
             {
-              "address": "45.196.208.16",
-              "port": 443,
+              "address": "45.196.214.192",
+              "port": 8443,
               "users": [
                 {
                   "encryption": "none",
@@ -14059,9 +14053,9 @@
           "realitySettings": {
             "allowInsecure": false,
             "fingerprint": "firefox",
-            "publicKey": "zr8_rtHm86s_G1gfRwNtunStGngYZSdYkA3PyBFXpDg",
+            "publicKey": "_CjW0Khlrr5z5oc9Oy6-w2ZEanz-zMBktVn5EOX9oTM",
             "serverName": "storage.yandex.net",
-            "shortId": "04bf0403f96e5b4b",
+            "shortId": "4ffc99daad0f261f",
             "show": false
           },
           "tcpSettings": {
@@ -14070,7 +14064,7 @@
             }
           }
         },
-        "tag": "proxy-decoy-45-196-208-16-direct"
+        "tag": "proxy-decoy-45-196-214-192-direct"
       },
       {
         "mux": {
@@ -14081,14 +14075,15 @@
         "settings": {
           "vnext": [
             {
-              "address": "95.163.232.194",
-              "port": 8444,
+              "address": "188.72.103.4",
+              "port": 443,
               "users": [
                 {
                   "encryption": "none",
                   "flow": "",
                   "id": "48235668-f3f0-4e7c-a8b2-190ddf7a5b37",
-                  "level": 8
+                  "level": 8,
+                  "security": "auto"
                 }
               ]
             }
@@ -14096,32 +14091,39 @@
         },
         "streamSettings": {
           "network": "xhttp",
-          "security": "reality",
-          "realitySettings": {
+          "security": "tls",
+          "tlsSettings": {
             "allowInsecure": false,
-            "fingerprint": "firefox",
-            "publicKey": "YaqfDQpUBDr5Q93AXGoJrWvs1PtiHkKloHh2J2xDc0I",
-            "serverName": "strm.yandex.net",
-            "shortId": "63ace20dfd61aa3b",
+            "serverName": "cdn.tracker.yandex.net",
             "show": false
           },
           "xhttpSettings": {
             "extra": {
-              "xmux": {
-                "cMaxReuseTimes": "256-512",
-                "maxConcurrency": "16-32",
-                "maxConnections": 0,
-                "hKeepAlivePeriod": 0,
-                "hMaxReusableSecs": "900-1500"
-              },
-              "xPaddingBytes": "50-150"
+              "seqKey": "",
+              "sessionKey": "",
+              "noSSEHeader": false,
+              "xPaddingKey": "",
+              "seqPlacement": "",
+              "uplinkDataKey": "",
+              "xPaddingBytes": "0-0",
+              "xPaddingHeader": "",
+              "xPaddingMethod": "",
+              "uplinkChunkSize": 0,
+              "sessionPlacement": "",
+              "uplinkHTTPMethod": "GET",
+              "xPaddingObfsMode": false,
+              "xPaddingPlacement": "",
+              "scMaxBufferedPosts": 30,
+              "scMaxEachPostBytes": "1000000",
+              "uplinkDataPlacement": "",
+              "scStreamUpServerSecs": "20-80"
             },
-            "host": "",
-            "mode": "stream-one",
-            "path": "/api/v2/stream/by-group-id/a0672485620ba65b"
+            "host": "web994.doaebqelqsqd.online",
+            "mode": "packet-up",
+            "path": "/livestreamcontent/"
           }
         },
-        "tag": "proxy-wl-95-163-232-194"
+        "tag": "proxy-wl-188-72-103-4"
       },
       {
         "protocol": "blackhole",
@@ -14140,7 +14142,7 @@
         "tag": "direct"
       }
     ],
-    "remarks": "🇨🇭⚪Швейцария (БС-3) ☁️",
+    "remarks": "🇩🇪⚪Германия (БС-1) ☁️",
     "routing": {
       "domainStrategy": "IPIfNonMatch",
       "domainMatcher": "hybrid",
@@ -14418,13 +14420,13 @@
               "tolerance": 0,
               "costs": [
                 {
-                  "match": "proxy-wl-95-163-232-194",
+                  "match": "proxy-wl-188-72-103-4",
                   "value": 10
                 }
               ]
             }
           },
-          "fallbackTag": "proxy-wl-95-163-232-194"
+          "fallbackTag": "proxy-wl-188-72-103-4"
         }
       ]
     },
