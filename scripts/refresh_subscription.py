@@ -1,4 +1,5 @@
 import copy
+import html
 import json
 import os
 import sys
@@ -57,6 +58,10 @@ def looks_like_config(value):
 
 
 def extract_configs(raw_text):
+    # Connliberty may return a saved HTML page where each JSON config is
+    # HTML-escaped inside an attribute. Decode it before JSON extraction.
+    raw_text = html.unescape(raw_text)
+
     try:
         value = json.loads(raw_text)
     except json.JSONDecodeError:
