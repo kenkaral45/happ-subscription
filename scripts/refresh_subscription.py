@@ -94,6 +94,22 @@ def extract_configs(raw_text):
     return configs
 
 
+def deduplicate_configs(configs):
+    """Keep one source config per remarks, preserving the page order."""
+    unique = []
+    positions = {}
+    for config in configs:
+        remarks = config.get("remarks")
+        if remarks in positions:
+            # Repeated cards are rendered copies of the same source entry.
+            # Keep the latest copy while retaining the first position.
+            unique[positions[remarks]] = config
+            continue
+        positions[remarks] = len(unique)
+        unique.append(config)
+    return unique
+
+
 def current_direct_domains(configs):
     for config in configs:
         for rule in config.get("routing", {}).get("rules", []):
@@ -175,7 +191,8 @@ def main():
     current_configs = load_json(CATALOG_PATH)
     direct_domains = extend_direct_domains(current_direct_domains(current_configs))
 
-    source_configs = extract_configs(fetch_subscription_text())
+    extracted_configs = extract_configs(fetch_subscription_text())
+    source_configs = deduplicate_configs(extracted_configs)
     final_configs = [copy.deepcopy(config) for config in source_configs]
     for config in final_configs:
         normalize_direct(config, direct_domains)
@@ -186,6 +203,7 @@ def main():
         encoding="utf-8",
     )
 
+    print(f"extracted_configs={len(extracted_configs)}")
     print(f"source_configs={len(source_configs)}")
     print(f"final_configs={len(final_configs)}")
     print(f"direct_domains={len(direct_domains)}")
