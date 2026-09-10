@@ -60,3 +60,4 @@ jobs:
           git add whitelist_configs_combined.json
           git commit -m "обновил каталог подписок"
           git push
+
