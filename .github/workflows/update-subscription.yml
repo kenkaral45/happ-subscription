@@ -1,31 +1,38 @@
-name: Update subscription
+name: Обновление VPN-подписок
 
 on:
   schedule:
-    # Run once per hour, away from GitHub's busy top-of-hour window.
+    # GitHub может немного задерживать scheduled workflows.
+    # Запуск в 17 минут уменьшает вероятность пиковой нагрузки.
     - cron: "17 * * * *"
   workflow_dispatch:
 
 concurrency:
+  # Не накапливать старые запуски, если предыдущий завис или идет дольше часа.
   group: subscription-refresh
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 permissions:
   contents: write
 
 jobs:
   refresh:
+    name: Обновить каталог подписок
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+    timeout-minutes: 10
 
-      - name: Set up Python
+    steps:
+      - name: Скачать репозиторий
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Настроить Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
-      - name: Refresh subscription catalog
+      - name: Обновить конфигурации
         env:
           DIRECT_EXTRA_DOMAINS: |-
             domain:funpay.com
@@ -34,17 +41,22 @@ jobs:
             domain:www.hltv.org
             domain:docs.varwin.com
             domain:varwin.com
+            domain:lk-dovuz.innopolis.university
         run: python scripts/refresh_subscription.py
 
-      - name: Commit and push changes
+      - name: Проверить результат
+        run: python -m json.tool whitelist_configs_combined.json > /dev/null
+
+      - name: Сохранить изменения
+        shell: bash
         run: |
           if git diff --quiet -- whitelist_configs_combined.json; then
-            echo "No subscription changes"
+            echo "Изменений в подписках нет"
             exit 0
           fi
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add whitelist_configs_combined.json
-          git commit -m "Replace catalog with site subscription"
+          git commit -m "обновил каталог подписок"
           git push
