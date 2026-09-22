@@ -2,9 +2,12 @@ name: Обновление VPN-подписок
 
 on:
   schedule:
-    # GitHub может немного задерживать scheduled workflows.
-    # Запуск в 17 минут уменьшает вероятность пиковой нагрузки.
+    # GitHub может задерживать или пропускать scheduled workflows.
+    # Основной запуск — на 17-й минуте каждого часа.
     - cron: "17 * * * *"
+    # Резервная попытка во второй половине часа.
+    # Повторный запуск безопасен: если изменений нет, workflow завершится без коммита.
+    - cron: "47 * * * *"
   workflow_dispatch:
 
 concurrency:
@@ -60,4 +63,3 @@ jobs:
           git add whitelist_configs_combined.json
           git commit -m "обновил каталог подписок"
           git push
-
