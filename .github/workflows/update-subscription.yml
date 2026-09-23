@@ -2,12 +2,8 @@ name: Обновление VPN-подписок
 
 on:
   schedule:
-    # GitHub может задерживать или пропускать scheduled workflows.
-    # Основной запуск — на 17-й минуте каждого часа.
-    - cron: "17 * * * *"
-    # Резервная попытка во второй половине часа.
-    # Повторный запуск безопасен: если изменений нет, workflow завершится без коммита.
-    - cron: "47 * * * *"
+    # Основной слот — :17; резервные попытки — каждые 15 минут после него.
+    - cron: "17,32,47,57 * * * *"
   workflow_dispatch:
 
 concurrency:
@@ -16,6 +12,7 @@ concurrency:
   cancel-in-progress: true
 
 permissions:
+  actions: read
   contents: write
 
 jobs:
@@ -25,17 +22,74 @@ jobs:
     timeout-minutes: 10
 
     steps:
+      - name: Проверить, обновлялись ли подписки за последний час
+        id: hourly_guard
+        uses: actions/github-script@v9
+        with:
+          script: |
+            if (context.eventName !== "schedule") {
+              core.setOutput("should_refresh", "true");
+              return;
+            }
+
+            const cutoff = Date.now() - 60 * 60 * 1000;
+            const { data } = await github.rest.actions.listWorkflowRuns({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: "update-subscription.yml",
+              event: "schedule",
+              per_page: 100,
+            });
+
+            for (const run of data.workflow_runs) {
+              if (String(run.id) === String(context.runId) || run.conclusion !== "success") {
+                continue;
+              }
+
+              const startedAt = Date.parse(run.run_started_at || run.created_at);
+              if (!Number.isFinite(startedAt) || startedAt < cutoff) {
+                continue;
+              }
+
+              const { data: jobs } = await github.rest.actions.listJobsForWorkflowRun({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                run_id: run.id,
+                per_page: 100,
+              });
+
+              const alreadyRefreshed = jobs.some((job) => {
+                const steps = job.steps || [];
+                return steps.some((step) =>
+                  step.name === "Обновить конфигурации" && step.conclusion === "success"
+                ) && steps.some((step) =>
+                  step.name === "Сохранить изменения" && step.conclusion === "success"
+                );
+              });
+
+              if (alreadyRefreshed) {
+                core.notice(`Пропускаю повтор: запуск ${run.id} уже успешно обновил подписки менее часа назад.`);
+                core.setOutput("should_refresh", "false");
+                return;
+              }
+            }
+
+            core.setOutput("should_refresh", "true");
+
       - name: Скачать репозиторий
+        if: steps.hourly_guard.outputs.should_refresh == 'true'
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Настроить Python
+        if: steps.hourly_guard.outputs.should_refresh == 'true'
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
       - name: Обновить конфигурации
+        if: steps.hourly_guard.outputs.should_refresh == 'true'
         env:
           DIRECT_EXTRA_DOMAINS: |-
             domain:funpay.com
@@ -48,9 +102,11 @@ jobs:
         run: python scripts/refresh_subscription.py
 
       - name: Проверить результат
+        if: steps.hourly_guard.outputs.should_refresh == 'true'
         run: python -m json.tool whitelist_configs_combined.json > /dev/null
 
       - name: Сохранить изменения
+        if: steps.hourly_guard.outputs.should_refresh == 'true'
         shell: bash
         run: |
           if git diff --quiet -- whitelist_configs_combined.json; then
